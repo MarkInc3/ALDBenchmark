@@ -10,7 +10,6 @@ import "./interfaces/IWETH.sol";
 
 import "./libraries/UniswapV2Library.sol";
 import "./libraries/SafeMath.sol";
-import "hardhat/console.sol";
 
 interface IERC200 {
     function transferFrom(
@@ -112,12 +111,11 @@ contract UniswapV2Router2 is IUniswapV2Router02 {
             amountAMin,
             amountBMin
         );
-        console.log("router");
+        
         address pair = UniswapV2Library.pairFor(factory, tokenA, tokenB);
         TransferHelper.safeTransferFrom(tokenA, msg.sender, pair, amountA);
-
-        // TransferHelper.safeTransferFrom(tokenB, msg.sender, pair, amountB);
-        IERC200(tokenB).transferFrom(msg.sender, pair, amountB);
+        TransferHelper.safeTransferFrom(tokenB, msg.sender, pair, amountB);
+        // IERC200(tokenB).transferFrom(msg.sender, pair, amountB);
         liquidity = IUniswapV2Pair(pair).mint(to);
     }
 
