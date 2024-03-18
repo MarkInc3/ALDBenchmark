@@ -11,11 +11,12 @@ node_modules
 # solidity-coverage files
 /coverage
 typechain-types
-/typechain-types
-cache
 
 # univ2
-/coverage.json
+coverage.json
 /univ2/node_modules
-/univ2/artifacts
-/univ2/.env
+univ2/artifacts
+univ2/.env
+univ2/typechain-types
+univ2/cache
+
