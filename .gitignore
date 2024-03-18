@@ -7,10 +7,12 @@ node_modules
 
 # TypeChain files
 /typechain
-/typechain-types
 
 # solidity-coverage files
 /coverage
+typechain-types
+/typechain-types
+cache
 
 # univ2
 /coverage.json

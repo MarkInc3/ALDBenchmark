@@ -2,3 +2,10 @@ v2 : runs : 999999, istanbul
 1. UniswapV2Factory
 2. UniswapV2Rounter2
 3. UniswapV2ERC20
+
+
+- low-pool, mid-pool, top-pool 
+1. 유동성 제공 
+2. 거래 
+3. 유동성 인출
+4. 기반 데이터로 메타플로잇 출력 
