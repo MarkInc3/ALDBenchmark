@@ -5,6 +5,13 @@ import "@nomicfoundation/hardhat-toolbox";
 const config: HardhatUserConfig = {
 
   networks: {
+    // hardhat:{
+    //   forking:{
+    //     url:`https://arbitrum-sepolia.infura.io/v3/${process.env.INFURA}`
+    //   },
+    //   chainId: 421614
+    // },
+
     'arb.sepo': {
       url: `https://sepolia-rollup.arbitrum.io/rpc`,
       chainId: 421614,
