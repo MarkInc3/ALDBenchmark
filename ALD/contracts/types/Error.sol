@@ -1,0 +1,73 @@
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity ^0.8.24;
+
+// import { Type } from "./types/Type.sol";
+
+interface Error {
+    error LOCKED(bool);
+    error REENTRANCY(bool);
+    error ZERO_CODE(uint);
+    error ZERO_PERIOD(uint);
+    error ZERO_PRICE(uint);
+    error LOW_AMOUNT(uint);
+    error LOW_PRICE(uint);
+    error LOW_QUANTITY(uint);
+    error NO_CONDITION();
+    error NO_HAVE();
+    error NO_IDENTITY();
+    error NO_LEVERAGE(uint);
+    error NO_PERMISSION(address);
+    error NO_POSITION(bytes32);
+    error NO_REWARD(uint);
+    error NO_SUPPLY();
+    error NO_TITLE();
+    error NO_UNLOCK();
+    error NOT_ADMIN(address);
+    error NOT_APPROVED(address, address);
+    error NOT_EXTERNAL_APP(address);
+    error NOT_ENOUGH_LIQUIDITY();
+    error NOT_ENOUGH_MARGIN(uint);
+    error NOT_EXIST();
+    error NOT_EXIST_TOKEN(address);
+    error NOT_EXIST_TOKEN_ID(uint);
+    error NOT_EXIST_KEYTOKEN(address);
+    error NOT_FILLED_YET(bytes32);
+    error NOT_MAINFARM(address);
+    error NOT_STAKE_YET(address);
+    error CANNOT_USE_NATIVE_TOKEN(address);
+    error TOO_SHORT_PERIOD(uint);
+    error ALREADY_CANCELLED(bytes32);
+    error ALREADY_CLAIMED(bytes32);
+    error ALREADY_CLOSED(bytes32);
+    error ALREADY_DISTRIBUTED();
+    error ALREADY_EXIST();
+    error ALREADY_FILLED(bytes32);
+    error ALREADY_HAVE();
+    error ALREADY_USE(uint);
+    error ALREADY_LIQUIDATED(bytes32);
+    error ALREADY_OPERATING(address);
+    error MISMATCH_MARKET(address);
+    error MISMATCH_ORDER(bytes32);
+    error MISMATCH_OWNER(address);
+    error INSUFFICIENT_AMOUNT(uint);
+    error INSUFFICIENT_APPROVAL(address, uint);
+    error INSUFFICIENT_ALLOWANCE(address, uint, uint);
+    error INSUFFICIENT_BALANCE(uint);
+    error INSUFFICIENT_LIQUIDITY(uint);
+    error UNSUPPORTED_CURRENCY(address);
+    error EXIST_MARKET(address);
+    error EXIST_TOKEN(address);
+    error EXIST_KEYTOKEN(address);
+    error INVALID_ADDRESS(address);
+    // error INVALID_CATEGORY(Type.Category);
+    error INVALID_DISTRIBUTION(uint);
+    error INVALID_MARGIN(uint);
+    error INVALID_ORDER();
+    error INVALID_PLAN();
+    error INVALID_REQUEST(bytes32);
+    error INVALID_TITLE(uint);
+    error BANNED_ACCOUNT(address);
+    //credit 
+    error APP_NOT_EXIST(address);
+    error NO_CREDIT(address);
+}

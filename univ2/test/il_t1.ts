@@ -154,7 +154,7 @@ describe('# IL LOSS CHECK', () => {
             console.log('RESULT IL LOSS %: ', -(IR2-IR1),'\n');
             data[i] = {
                 price : Number(afterEstimatedPrice),
-                loss :  Number(-(IR2-IR1))
+                loss :  Number(-((IR2-IR1)/2))
             };
         }
         OUT.push({
@@ -313,7 +313,7 @@ describe('# IL LOSS CHECK', () => {
             console.log('RESULT IL LOSS %: ', -(IR2-IR1),'\n');
             data[i] = {
                 price : Number(afterEstimatedPrice),
-                loss :  Number(-(IR2-IR1))
+                loss :  Number(-((IR2-IR1)/3))
             };
         }
         OUT.push({
@@ -424,7 +424,7 @@ describe('# IL LOSS CHECK', () => {
             console.log('RESULT IL LOSS %: ', -(IR2-IR1),'\n');
             data[i] = {
                 price : Number(afterEstimatedPrice),
-                loss :  Number(-(IR2-IR1))
+                loss :  Number(-((IR2-IR1)/3))
             };
         }
         OUT.push({

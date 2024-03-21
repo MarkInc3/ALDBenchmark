@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: CC0-1.0
 pragma solidity ^0.8.24;
 
+import 'hardhat/console.sol';
+
 library Currency {
     using Currency for address;
 
@@ -183,6 +185,7 @@ library Currency {
             (bool success, bytes memory data) = address(token).staticcall(
                 abi.encodeWithSelector($decimals)
             );
+            
             (success, data) = address(token).call(
                 abi.encodeWithSelector(
                     $transfer,
@@ -213,6 +216,9 @@ library Currency {
             (bool success, bytes memory data) = token.staticcall(
                 abi.encodeWithSelector($decimals)
             );
+                         console.log('debug');
+                console.log( abi.decode(data, (uint8)));
+                console.log(data.length);
             (success, data) = address(token).call(
                 abi.encodeWithSelector(
                     $transferFrom,
@@ -225,7 +231,11 @@ library Currency {
                         )
                         : amount
                 )
+       
             );
+   
+                // console.log(format(data.length == 32 ? abi.decode(data, (uint8)) : 0));
+
             if (!success && (data.length != 0 || !abi.decode(data, (bool))))
                 revert TOKEN_TRANSFERFROM_FAIL(token, from, amount);
         }
