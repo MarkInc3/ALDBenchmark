@@ -15,7 +15,7 @@ for pool in data:
     losses = [point['loss'] for point in pool['data']]
     axs.plot(prices, losses, label=f'Pool {pool["id"]}')
 
-axs.set_title('a. Uniswap')
+axs.set_title('a. ALD')
 axs.set_xlabel('spot price change, ρ')
 axs.set_ylabel('divergence loss, L')
 axs.legend()
