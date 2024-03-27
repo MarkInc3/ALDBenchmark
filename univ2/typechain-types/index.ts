@@ -38,8 +38,6 @@ export type { MockBTC } from "./contracts/mocks/MockBTC";
 export { MockBTC__factory } from "./factories/contracts/mocks/MockBTC__factory";
 export type { MockUSDT } from "./contracts/mocks/MockUSDT";
 export { MockUSDT__factory } from "./factories/contracts/mocks/MockUSDT__factory";
-export type { Runtime } from "./contracts/Runtime";
-export { Runtime__factory } from "./factories/contracts/Runtime__factory";
 export type { UniswapV2ERC20 } from "./contracts/UniswapV2ERC20";
 export { UniswapV2ERC20__factory } from "./factories/contracts/UniswapV2ERC20__factory";
 export type { UniswapV2Factory } from "./contracts/UniswapV2Factory";

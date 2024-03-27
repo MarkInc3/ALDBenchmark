@@ -216,9 +216,7 @@ library Currency {
             (bool success, bytes memory data) = token.staticcall(
                 abi.encodeWithSelector($decimals)
             );
-                         console.log('debug');
-                console.log( abi.decode(data, (uint8)));
-                console.log(data.length);
+              
             (success, data) = address(token).call(
                 abi.encodeWithSelector(
                     $transferFrom,

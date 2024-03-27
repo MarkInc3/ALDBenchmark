@@ -1,8 +1,8 @@
 import json
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
-file_path = '../ILUNI.json'
+file_path = './il_univ2.json'
 
 # Read the JSON data from the file
 with open(file_path, 'r') as file:
@@ -13,11 +13,17 @@ fig, axs = plt.subplots( figsize=(5, 5))
 for pool in data:
     prices = [point['price'] for point in pool['data']]
     losses = [point['loss'] for point in pool['data']]
-    axs.plot(prices, losses, label=f'Pool {pool["id"]}')
+    if pool["id"] == 1 :
+        axs.plot(prices, losses, label='10K')
+    elif pool["id"] == 2 :
+        axs.plot(prices, losses, label='1M')
+    elif pool["id"] == 3 :
+        axs.plot(prices, losses, label=f'1B')
+        
 
-axs.set_title('a. ALD')
-axs.set_xlabel('spot price change, ρ')
-axs.set_ylabel('divergence loss, L')
+axs.set_title('a. Uniswap')
+axs.set_xlabel('Spot Price Change, ρ')
+axs.set_ylabel('Divergence Loss, L (%)')
 axs.legend()
 axs.grid(True)
 
