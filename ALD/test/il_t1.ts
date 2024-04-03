@@ -204,7 +204,7 @@ describe('# IL LOSS CHECK', () => {
 
             data[i] = {
                 price : Number(marketPrice),
-                loss :  Number(((IR1 / IR2) - 1) * 100)
+                loss :  Number((((IR1 / IR2) - 1) * 100) * 0.6 )
             };
 
             console.log('Market Price : ',ethers.formatUnits(await market.getPrice(),18));
@@ -283,7 +283,7 @@ describe('# IL LOSS CHECK', () => {
 
             data[i] = {
                 price : Number(marketPrice),
-                loss :  Number(((IR1 / IR2) - 1) * 100)
+                loss :  Number( ((IR1 / IR2) - 1) * 100 * 0.4 )
             };
 
             console.log('Market Price : ',ethers.formatUnits(await market.getPrice(),18));

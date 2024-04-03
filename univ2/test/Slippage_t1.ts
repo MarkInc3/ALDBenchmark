@@ -12,12 +12,12 @@ type IL = {
 }
 let DEPLOYER = process.env.DEPLOYER
 const FEE = "0xd0B495b27BF00f2739C94e2de4405489951a2B6E"; // #2 account
-const LOW = ethers.parseUnits("10000",18); // 5k
+const LOW = ethers.parseUnits("10",18); // 5k
 const LOW2 = ethers.parseUnits("100000",18); // 50k
 const MID = ethers.parseUnits("1000000",18); // 0.5M
-const TOP = ethers.parseUnits("1000000000",18); // 0.5B
+const TOP = ethers.parseUnits("1000000000",18); // 0.5
 //stable
-const SLOW = ethers.parseUnits("10000",6); // 10k
+const SLOW = ethers.parseUnits("100",6); // 10k
 const SLOW2 = ethers.parseUnits("100000",6); // 100k
 const SMID = ethers.parseUnits("1000000",6); // 1M
 const STOP = ethers.parseUnits("1000000000",6); // 1B
@@ -141,29 +141,52 @@ describe('# Slippage LOSS CHECK', () => {
         for(let i=1 ; i <= 1 ;i++){ 
             // console.log('BTC RATE -> ', ethers.formatUnits(estimated[0],18),'  USDT RATE -> ',ethers.formatUnits(estimated[1],6))
             const nowReserve = await btc_usdt.getReserves();
+            const btc = nowReserve[1]
+            const usdt = nowReserve[0] * BigInt(10**12)
+            const price = Number(usdt) / Number(btc)
+            const tradingAmount = 1; // 10btc : 100usdt == 1btc : 10usdt, 1usdt = 0.1btc
             console.log('now ->', nowReserve);
-            // 예상 수령 토큰 BTC , 상수 K / 거래전 USDT Amounts + 거래에 사용되는 USDT Amounts 
-            const estimateAmount = K / (ethers.parseUnits("5000", 6) + nowReserve[0]); 
-            console.log('estimateAmount -> ', estimateAmount) 
+            console.log('now price ->', price);
+            console.log('estated BTC Amounts ->', tradingAmount );
 
+            // 1btc * price = usdtAmounts == 10 usdt  
+
+            // 1btc : 10 = 1usdt : 
+
+            // 예상 수령 토큰 BTC , 상수 K / 거래전 USDT Amounts + 거래에 사용되는 USDT Amounts 
+            // 1000000000000000000n
+            // 10000000000000000000n
+
+         
+            // const estimateAmount = nowReserve[1] - (K / (ethers.parseUnits(String(tradingAmount), 6) + nowReserve[0])); 
+            // console.log('estimateAmount -> ',estimateAmount) 
+
+            const preBTCAmounts = await mockBTC.balanceOf(marketUser.address);
 
             // buy btc
             await v2Router2.connect(marketUser).swapExactTokensForTokens(
-                ethers.parseUnits("5000",6),
+                ethers.parseUnits(String(tradingAmount),6),
                 0,
                 [await mockUSDT.getAddress(), await mockBTC.getAddress()],
                 marketUser.address,
                 "9999999999"
             );
-            console.log('estimateAmount -> ',await mockBTC.balanceOf(marketUser));
-            const reserve = await btc_usdt.getReserves();
-            const rUsdt =  ethers.formatUnits(reserve[0],6);
-            const rBtc = ethers.formatUnits(reserve[1],18);
 
-                // 10000000000009999220736n
-                // 1000000000004992488733099649474211n
-           
-            
+            // buy btc
+            const afterBTCAmounts = await mockBTC.balanceOf(marketUser) - preBTCAmounts 
+            // 슬리피지 (%) = (예상 가격 - 실제 체결 가격) / 예상 가격 * 100
+            const afterBTCAmountsNumber = ethers.formatUnits(String(afterBTCAmounts),18)
+            //const estimateAmountNumber = Number(ethers.formatUnits(estimateAmount,18));
+            console.log('afterBTCAmounts -> ', afterBTCAmountsNumber);
+
+            console.log(ethers.formatUnits((await btc_usdt.getReserves())[1],18))
+            console.log(ethers.formatUnits((await btc_usdt.getReserves())[0],6))
+            // console.log('estimateAmount -> ', estimateAmountNumber);
+            // const slippage = ((estimateAmountNumber / afterBTCAmountsNumber ) - 1) * 100
+            // console.log('slippage -> ', slippage);
+            // const reserve = await btc_usdt.getReserves();
+            // const rUsdt =  ethers.formatUnits(reserve[0],6);
+            // const rBtc = ethers.formatUnits(reserve[1],18);
 
             
             // // 유동성에서 넣은 가치
